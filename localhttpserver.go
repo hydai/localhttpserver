@@ -4,11 +4,11 @@ import (
     "net"
     "net/http"
     "strconv"
+    "fmt"
 )
 
-func testPort(port int) bool {
-    portS := strconv.Itoa(port)
-    listenNet, err := net.Listen("tcp", ":" + portS)
+func testPort(port string) bool {
+    listenNet, err := net.Listen("tcp", ":" + port)
     if nil != err {
         return false
     }
@@ -20,10 +20,13 @@ func testPort(port int) bool {
 }
 
 func getPort(port int) string {
-    for !testPort(port) {
+    portS := strconv.Itoa(port)
+    for !testPort(portS) {
         port += 1
     }
-    return strconv.Itoa(port)
+
+    fmt.Printf("Listen on http://127.0.0.1:" + portS + "\n")
+    return portS
 }
 
 func main() {
