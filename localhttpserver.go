@@ -23,6 +23,7 @@ func getPort(port int) string {
     portS := strconv.Itoa(port)
     for !testPort(portS) {
         port += 1
+        portS = strconv.Itoa(port)
     }
 
     fmt.Printf("Listen on http://127.0.0.1:" + portS + "\n")
