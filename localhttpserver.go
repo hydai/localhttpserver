@@ -1,4 +1,4 @@
-package localhttpserver
+package main
 
 import (
     "net"
